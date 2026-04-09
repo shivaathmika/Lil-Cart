@@ -3,3 +3,4 @@ flask_sqlalchemy
 flask_mail
 itsdangerous
 werkzeug
+gunicorn
