@@ -22,8 +22,7 @@ app.config['MAIL_DEFAULT_SENDER'] = 'lilcartweb@gmail.com'
 mail = Mail(app)
 serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 db = SQLAlchemy(app)
-with app.app_context():
-    db.create_all()
+
  
  
 # ── MODELS ──────────────────────────────────────────────────────────────────
@@ -354,7 +353,10 @@ def logout():
 @app.route('/shop')
 def shop():
     return "Welcome to Shopping 🛍️"
- 
+
+@app.before_request
+def create_tables():
+    db.create_all() 
  
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
