@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Choose Role 💜</title>
+<style>
+body {
+    font-family: Poppins;
+    background: #f0edff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.box {
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+}
+.btn {
+    display:block;
+    margin:15px 0;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+}
+.buyer { background:#a393eb; color:white; }
+.seller { border:2px solid #a393eb; color:#6c63ff; }
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h2>What do you want to do now? 💜</h2>
+    <a href="/set-role/buyer/{{ user_id }}" class="btn buyer">Shop (Buyer)</a>
+    <a href="/set-role/seller/{{ user_id }}" class="btn seller">Sell Products</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Seller Dashboard 🎀</title>
+<style>
+body {
+    font-family: Poppins;
+    background: #f0edff;
+    padding: 40px;
+}
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+button {
+    padding: 12px;
+    width: 100%;
+    background: #a393eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+.product {
+    margin-top: 15px;
+    padding: 10px;
+    background: #ede9ff;
+    border-radius: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Your Products 🎀</h2>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div style="background:#ede9ff; padding:10px; border-radius:10px; margin-bottom:10px;">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+    <h3>Add New Product ➕</h3>
+
+<form method="POST" enctype="multipart/form-data">
+    <input name="name" placeholder="Product name" required>
+    <input name="price" placeholder="Price" required>
+    <input type="file" name="image" required>
+
+    <button>Add Product ➕</button>
+</form>
+    {% for product in products %}
+    <div class="product">
+        <b>{{ product.name }}</b> - ₹{{ product.price }}
+
+        <a href="/delete-product/{{ product.id }}" 
+           style="color:rgb(204, 103, 234); margin-left:10px;">
+           Delete 
+        </a>
+    </div>
+{% endfor %}
+
+    {% for product in products %}
+        <div class="product">
+            <b>{{ product.name }}</b> - ₹{{ product.price }}
+        </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

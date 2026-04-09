@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lil Cart 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f0edff;
+}
+
+.hero {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 80px;
+}
+
+.left { max-width: 50%; }
+
+.left h1 { font-size: 52px; color: #4b3f72; }
+
+.left p { color: #7a6fa3; margin: 20px 0; font-size: 18px; }
+
+.buttons { display: flex; gap: 20px; }
+
+.btn {
+    padding: 14px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.2s;
+}
+
+.buyer { background: #a393eb; color: white; }
+
+.seller { background: white; color: #6c63ff; border: 2px solid #a393eb; }
+
+.btn:hover { transform: scale(1.05); }
+
+/* CLOUD AREA */
+.right {
+    position: relative;
+    width: 560px;
+    height: 380px;
+    flex-shrink: 0;
+}
+
+.cloud-svg {
+    position: absolute;
+}
+
+/* TOP DARK CLOUD */
+.cloud-svg.back1 {
+    top: 20px;
+    left: 120px;
+    opacity: 0.7;
+    animation: floatTop 6s ease-in-out infinite;
+}
+
+/* LEFT CLOUD */
+.cloud-svg.back2 {
+    top: 140px;
+    left: 40px;
+    opacity: 0.6;
+    animation: floatLeft 7s ease-in-out infinite;
+}
+
+/* RIGHT MAIN CLOUD */
+.cloud-svg.main {
+    top: 150px;
+    right: 40px;
+    animation: floatRight 5.5s ease-in-out infinite;
+}
+
+@keyframes floatTop {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes floatLeft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes floatRight {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+}
+</style>
+</head>
+
+<body>
+<div class="hero">
+
+    <!-- LEFT -->
+    <div class="left">
+        <h1>Welcome to Lil Cart 💜</h1>
+        <p>Discover products from small creators ✨</p>
+        <div class="buttons">
+            <a href="/signup" class="btn buyer">Get Started 🛍️</a>
+        </div>
+    </div>
+
+    <!-- RIGHT: CLOUDS -->
+    <div class="right">
+
+        <!-- small back-left cloud -->
+        <svg class="cloud-svg back2" width="260" height="130" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#cdc3ff" d="
+                M60,128
+                Q38,128 28,114 Q16,98 28,84
+                Q38,72 54,72
+                Q56,50 74,40 Q94,28 116,38
+                Q128,18 152,14 Q184,8 208,30
+                Q224,18 246,22 Q272,26 282,52
+                Q298,54 308,70 Q320,88 308,104
+                Q300,116 284,118
+                Q282,132 266,138 Q248,146 232,136
+                Q220,148 200,148 Q172,152 160,136
+                Q140,148 116,144 Q90,142 80,128 Z
+            "/>
+        </svg>
+
+        <!-- medium back-right cloud -->
+        <svg class="cloud-svg back1" width="300" height="150" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#bdb0f8" d="
+                M60,128
+                Q38,128 28,114 Q16,98 28,84
+                Q38,72 54,72
+                Q56,50 74,40 Q94,28 116,38
+                Q128,18 152,14 Q184,8 208,30
+                Q224,18 246,22 Q272,26 282,52
+                Q298,54 308,70 Q320,88 308,104
+                Q300,116 284,118
+                Q282,132 266,138 Q248,146 232,136
+                Q220,148 200,148 Q172,152 160,136
+                Q140,148 116,144 Q90,142 80,128 Z
+            "/>
+        </svg>
+
+        <!-- main front cloud -->
+        <svg class="cloud-svg main" width="380" height="190" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#d4caff" d="
+                M60,128
+                Q38,128 28,114 Q16,98 28,84
+                Q38,72 54,72
+                Q56,50 74,40 Q94,28 116,38
+                Q128,18 152,14 Q184,8 208,30
+                Q224,18 246,22 Q272,26 282,52
+                Q298,54 308,70 Q320,88 308,104
+                Q300,116 284,118
+                Q282,132 266,138 Q248,146 232,136
+                Q220,148 200,148 Q172,152 160,136
+                Q140,148 116,144 Q90,142 80,128 Z
+            "/>
+        </svg>
+
+    </div>
+</div>
+</body>
+</html>
