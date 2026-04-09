@@ -2,10 +2,16 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+import threading
 from werkzeug.utils import secure_filename
 from flask_mail import Mail, Message
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
-
+def send_email_async(app, msg):
+    with app.app_context():
+        try:
+            mail.send(msg)
+        except Exception as e:
+            print("Email error:", e)
 app = Flask(__name__)
 
 # ── CONFIG ─────────────────────────────────────
@@ -107,7 +113,7 @@ def signup():
 
         # 🔥 NON-BLOCKING EMAIL
         try:
-            mail.send(msg)
+            threading.Thread(target=send_email_async, args=(app, msg)).start()
         except Exception as e:
             print("Email error:", e)
 
