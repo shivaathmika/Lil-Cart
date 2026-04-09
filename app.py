@@ -22,6 +22,8 @@ app.config['MAIL_DEFAULT_SENDER'] = 'lilcartweb@gmail.com'
 mail = Mail(app)
 serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 db = SQLAlchemy(app)
+with app.app_context():
+    db.create_all()
  
  
 # ── MODELS ──────────────────────────────────────────────────────────────────
