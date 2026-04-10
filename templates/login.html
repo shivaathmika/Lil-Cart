@@ -2,78 +2,101 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Login · Lil Cart 💜</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Lil Cart</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    font-family: 'Poppins', sans-serif;
-    background: #f0edff;
+    margin: 0;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(160deg, #fff5ea, #ffe0cc 55%, #ffd6cf);
 }
 .card {
-    background: white;
-    border-radius: 20px;
-    padding: 48px 40px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 8px 40px rgba(99,83,200,0.10);
+    width: min(100%, 430px);
+    background: rgba(255,255,255,0.95);
+    border-radius: 28px;
+    padding: 34px;
+    box-shadow: 0 20px 60px rgba(115, 57, 43, 0.15);
 }
-h2 { color: #4b3f72; margin-bottom: 8px; font-size: 26px; }
-.sub { color: #9b8fc7; font-size: 14px; margin-bottom: 32px; }
-label { font-size: 13px; color: #7a6fa3; display: block; margin-bottom: 6px; }
+h1 { margin: 0 0 8px; color: #7a3d2f; }
+p { color: #775951; line-height: 1.6; }
+.flash {
+    background: #fff3db;
+    border: 1px solid #f2d08e;
+    border-radius: 16px;
+    padding: 12px 14px;
+    margin: 14px 0;
+}
+label {
+    display: block;
+    margin: 16px 0 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #5b3027;
+}
 input {
     width: 100%;
-    padding: 12px 16px;
-    border: 1.5px solid #e2dbff;
-    border-radius: 10px;
-    font-size: 15px;
-    font-family: 'Poppins', sans-serif;
-    outline: none;
-    transition: border 0.2s;
-    margin-bottom: 20px;
-    color: #4b3f72;
+    padding: 13px 14px;
+    border-radius: 16px;
+    border: 1px solid #e3c4b1;
+    font: inherit;
 }
-input:focus { border-color: #a393eb; }
-.btn {
+button {
     width: 100%;
+    margin-top: 22px;
     padding: 14px;
-    background: #a393eb;
+    border: 0;
+    border-radius: 18px;
+    font: inherit;
+    font-weight: 600;
     color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
+    background: #ef7965;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
 }
-.btn:hover { background: #8b7cd6; transform: scale(1.02); }
-.footer { text-align: center; margin-top: 20px; font-size: 13px; color: #9b8fc7; }
-.footer a { color: #7c6fca; text-decoration: none; font-weight: 500; }
+.secondary {
+    margin-top: 12px;
+    background: #fff6f1;
+    color: #8b4c3f;
+    border: 1px solid #e6c0b3;
+}
+a { color: #a54837; }
 </style>
 </head>
 <body>
 <div class="card">
-    <h2>Welcome back 💜</h2>
-    <p class="sub">Log in to your Lil Cart account</p>
+    <h1>Welcome back</h1>
+    <p>Log in to manage your listings or browse local handmade products.</p>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
     <form method="POST">
-        <label>Email</label>
-        <input type="email" name="email" placeholder="you@email.com" required>
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" value="{{ email }}" required>
 
-        <label>Password</label>
-        <input type="password" name="password" placeholder="••••••••" required>
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" required>
 
-        <button type="submit" class="btn">Log in</button>
+        <button type="submit">Log in</button>
     </form>
 
-    <div class="footer">
-        Don't have an account? <a href="/signup">Sign up</a>
-    </div>
+    {% if show_resend %}
+        <form method="POST" action="/resend-verification">
+            <input type="hidden" name="email" value="{{ email }}">
+            <button class="secondary" type="submit">Resend verification email</button>
+        </form>
+    {% endif %}
+
+    <p style="margin-top:18px;">Need an account? <a href="/signup">Sign up</a></p>
 </div>
 </body>
 </html>

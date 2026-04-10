@@ -4,3 +4,4 @@ flask_mail
 itsdangerous
 werkzeug
 gunicorn
+psycopg2-binary
